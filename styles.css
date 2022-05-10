@@ -1,0 +1,41 @@
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+form > input {
+    width: 200px;
+    
+}
+
+form > label {
+    margin-left: 25px;
+}
+
+form > input {
+    margin: 0 auto;
+}
+
+#open-popup{
+    display: block;
+    position: fixed;
+    margin: auto;
+    height: 210px;
+    width: 250px;
+    background-color: rgba(87, 87, 87, .6);
+    border-radius: 15px;
+}
+#close-popup{
+    display: none;
+}
+
+.input-label{
+    display: none;
+}
+
+#popup-container{
+    position: fixed;
+}
+
