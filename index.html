@@ -12,6 +12,7 @@
 
 <body>
     <button id="add-book" onclick="popup()">Add Book</button>
+    <button id="list-books" onclick="bookList()">Book List</button>
 
     <div class="popup-container">
         <div id="close-popup">
@@ -29,6 +30,29 @@
                 <input type="text" class="input-label" id="read">
             </form>
         </div>
+    </div>
+
+    <div id="table-container">
+
+        <table class="book-table">
+
+            <tr class="invis-template">
+                <td class="invis-template"></td>
+                <td class="invis-template"></td>
+                <td class="invis-template"></td>
+                <td class="invis-template"></td>
+            </tr>
+            
+            <tr class="book-table">
+                <th class="book-table">Title</th>
+                <th class="book-table">Author</th>
+                <th class="book-table">Pages</th>
+                <th class="book-table">Read</th>
+            </tr>
+
+            
+        </table>
+
     </div>
 </body>
 

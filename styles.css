@@ -34,6 +34,17 @@ form > input {
 .input-label{
     display: none;
 }
+.invis-template{
+    display: none;
+}
+.book-table{
+display: flex;
+justify-content: center;
+}
+
+tr td th{
+    border: 1px solid black;
+}
 
 #popup-container{
     position: fixed;

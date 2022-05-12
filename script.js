@@ -1,7 +1,11 @@
 let testBook = {
-    book1: {title: 'test', author: 'test',pages: 123, read: 'No'}
+    title: 'test', author: 'test',pages: 123, read: 'No'
 };
 let myLibrary = [testBook];
+const title = document.getElementById('title');
+const author = document.getElementById('author');
+const pages = document.getElementById('pages');
+const read = document.getElementById('read');
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -15,19 +19,19 @@ function addBookToLibrary(title, author, pages, read) {
     let newBook = {};
     newBook = new Book(title, author, pages, read);
 
-    myLibrary.push.newBook;
+    myLibrary.push(newBook);
     console.log(newBook);
     console.log(myLibrary);
     i++;
 }
 
-function listBooks() {
-    let i = 0;
-    //Object.entries() may work as well
-    for (i in myLibrary) {
-        return title + ` by ${author}` + `, ${pages}`, + ` ${read}`;
-    }
-
+function bookList() {
+    for (const [key, value] of Object.entries(testBook)) {
+        console.log(`${key}`, `${value}`);
+        // this outputs the property and value pairings correctly now.
+        //the goal now is to get it to output the values into a table or something to display the books.
+        //you can create the base html for the table and use the cloneNode() method on it to create new table rows and pass the data.
+    } 
 }
 
 function popup() {
@@ -35,15 +39,12 @@ function popup() {
     let open = document.getElementById('open-popup');
     let bookForm = document.getElementsByClassName('input-label');
     let length = bookForm.length;
-    let title = document.getElementById('title');
-    let author = document.getElementById('author');
-    let pages = document.getElementById('pages');
-    let read = document.getElementById('read');
 
-    //temporary(?) check for null to silence console errors
+
+    //if popup is open close var will == null, this will close it and submit book.
     if (close == null) {
         closePopup();
-        addBookToLibrary(document.getElementById('title').value, document.getElementById('author').value, document.getElementById('pages').value, document.getElementById('read').value);
+        addBookToLibrary(title.value, author.value, pages.value, read.value);
         return 1;
     }
 
@@ -69,7 +70,4 @@ function closePopup() {
     console.log('bye');
 }
 
-
-//newBook succesfully gets turned into an object by new Book constructor and with the correct values but when pushed to myLibrary it doesnt get stored
-//although by using the testBook variable which is constructed the same way and manually entering the object it gets stored properly
-//  5/10/22 left off at addToLibrary function: find out how to push an object variable into an array
+//TODO: complete the listBooks() function
