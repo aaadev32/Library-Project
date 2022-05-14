@@ -1,24 +1,24 @@
-form{
+form {
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin: auto;
 }
 
-form > input {
+form>input {
     width: 200px;
-    
+
 }
 
-form > label {
+form>label {
     margin-left: 25px;
 }
 
-form > input {
+form>input {
     margin: 0 auto;
 }
 
-#open-popup{
+#open-popup {
     display: block;
     position: fixed;
     margin: auto;
@@ -27,26 +27,26 @@ form > input {
     background-color: rgba(87, 87, 87, .6);
     border-radius: 15px;
 }
-#close-popup{
+
+#close-popup {
     display: none;
 }
 
-.input-label{
+.input-label {
     display: none;
-}
-.invis-template{
-    display: none;
-}
-.book-table{
-display: flex;
-justify-content: center;
 }
 
-tr td th{
+#main-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+th tr td {
     border: 1px solid black;
+    margin: 2px 5px;
 }
 
-#popup-container{
+#popup-container {
     position: fixed;
 }
-

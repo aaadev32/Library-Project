@@ -1,11 +1,12 @@
 let testBook = {
-    title: 'test', author: 'test',pages: 123, read: 'No'
+    title: 'test', author: 'test', pages: 123, read: 'No'
 };
 let myLibrary = [testBook];
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
 const read = document.getElementById('read');
+const table = document.getElementById('main-table');
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -26,12 +27,52 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function bookList() {
-    for (const [key, value] of Object.entries(testBook)) {
-        console.log(`${key}`, `${value}`);
-        // this outputs the property and value pairings correctly now.
-        //the goal now is to get it to output the values into a table or something to display the books.
-        //you can create the base html for the table and use the cloneNode() method on it to create new table rows and pass the data.
-    } 
+    let j = 0;
+    let newKey = document.createElement('th');
+    let newValue = document.createElement('td');
+    let button = document.createElement('button');
+    let newTableRow = document.createElement('tr');
+    let newRowId = document.getElementById(`table-row-${j}`)
+
+
+    for (let i = 0; i < myLibrary.length; i++) {
+
+        j = 0;
+        let obj = myLibrary[i];
+
+        if (j == 0) {
+            //creates table head and appends keys to it
+            let newTableNode = newTableRow;
+            newTableNode.id = `table-row-${i}`;
+            table.appendChild(newTableNode);
+
+            for (const [key, value] of Object.entries(obj)) {
+                let newKeyNode = newKey;
+                newKeyNode.textContent = key;
+                let clone = newKeyNode.cloneNode(true);
+                console.log(newKeyNode);
+                newTableNode.appendChild(clone);
+            }
+            j++
+        }
+
+        //create new row for values and append them
+        let newTableNode = newTableRow;
+        newTableNode.id = `table-row-${i}`;
+        console.log(newTableNode);
+        table.appendChild(newTableRow);
+
+        for (const [key, value] of Object.entries(obj)) {
+
+            let newValueNode = newValue;
+            newValueNode.textContent = value;
+            let clone = newValueNode.cloneNode(true);
+            newTableNode.appendChild(clone);
+        }
+        j++
+    }
+
+    //displays book objects correctly now it just needs to be styled properly and remove button added.--------------------5/13/22
 }
 
 function popup() {
