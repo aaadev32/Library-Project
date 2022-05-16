@@ -1,3 +1,6 @@
+* {
+    background-color: grey;
+}
 form {
     display: flex;
     justify-content: center;

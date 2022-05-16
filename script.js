@@ -28,10 +28,10 @@ function addBookToLibrary(title, author, pages, read) {
 
 function bookList() {
     let j = 0;
-    let newKey = document.createElement('th');
-    let newValue = document.createElement('td');
+    let createTableHead = document.createElement('th');
+    let createTableData = document.createElement('td');
     let button = document.createElement('button');
-    let newTableRow = document.createElement('tr');
+    let createTableRow = document.createElement('tr');
     let newRowId = document.getElementById(`table-row-${j}`)
 
 
@@ -42,29 +42,29 @@ function bookList() {
 
         if (j == 0) {
             //creates table head and appends keys to it
-            let newTableNode = newTableRow;
-            newTableNode.id = `table-row-${i}`;
-            table.appendChild(newTableNode);
+            let newTableRow = createTableRow;
+            newTableRow.id = `table-row-${i}`;
+            table.appendChild(newTableRow);
 
             for (const [key, value] of Object.entries(obj)) {
-                let newKeyNode = newKey;
+                let newKeyNode = createTableHead;
                 newKeyNode.textContent = key;
                 let clone = newKeyNode.cloneNode(true);
                 console.log(newKeyNode);
-                newTableNode.appendChild(clone);
+                newTableRow.appendChild(clone);
             }
             j++
         }
 
         //create new row for values and append them
-        let newTableNode = newTableRow;
+        let newTableNode = createTableRow;
         newTableNode.id = `table-row-${i}`;
         console.log(newTableNode);
-        table.appendChild(newTableRow);
+        table.appendChild(createTableRow);
 
         for (const [key, value] of Object.entries(obj)) {
 
-            let newValueNode = newValue;
+            let newValueNode = createTableData;
             newValueNode.textContent = value;
             let clone = newValueNode.cloneNode(true);
             newTableNode.appendChild(clone);
@@ -81,8 +81,6 @@ function popup() {
     let bookForm = document.getElementsByClassName('input-label');
     let length = bookForm.length;
 
-
-    //if popup is open close var will == null, this will close it and submit book.
     if (close == null) {
         closePopup();
         addBookToLibrary(title.value, author.value, pages.value, read.value);
@@ -110,5 +108,3 @@ function closePopup() {
     }
     console.log('bye');
 }
-
-//TODO: complete the listBooks() function
