@@ -1,7 +1,7 @@
-let testBook = {
+/*let testBook = {
     title: 'test', author: 'test', pages: 123, read: 'No'
-};
-let myLibrary = [testBook];
+};*/
+let myLibrary = [];
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
@@ -30,7 +30,7 @@ function bookList() {
     let j = 0;
     let createTableHead = document.createElement('th');
     let createTableData = document.createElement('td');
-    let button = document.createElement('button');
+    let createButton = document.createElement('button');
     let createTableRow = document.createElement('tr');
     let newRowId = document.getElementById(`table-row-${j}`)
 
@@ -49,30 +49,39 @@ function bookList() {
             for (const [key, value] of Object.entries(obj)) {
                 let newKeyNode = createTableHead;
                 newKeyNode.textContent = key;
-                let clone = newKeyNode.cloneNode(true);
-                console.log(newKeyNode);
-                newTableRow.appendChild(clone);
+                let keyClone = newKeyNode.cloneNode(true);
+                newTableRow.appendChild(keyClone);
             }
             j++
         }
 
         //create new row for values and append them
-        let newTableNode = createTableRow;
-        newTableNode.id = `table-row-${i}`;
-        console.log(newTableNode);
+        let newTableRow = createTableRow;
+        newTableRow.id = `table-row-${i}`;
+        console.log(newTableRow);
         table.appendChild(createTableRow);
 
         for (const [key, value] of Object.entries(obj)) {
-
             let newValueNode = createTableData;
+            newValueNode.dataset.index = `${i}`;
             newValueNode.textContent = value;
-            let clone = newValueNode.cloneNode(true);
-            newTableNode.appendChild(clone);
+            let valueClone = newValueNode.cloneNode(true);
+            newTableRow.appendChild(valueClone);
+
+            if(key == 'read'){
+                let newButton = createButton;
+                newButton.dataset.index = `${i}` //TODO: make this line set data- attribute properly
+                newButton.textContent = `Delete Book`;
+                buttonClone = newButton.cloneNode(true);
+                newTableRow.appendChild(buttonClone);
+            }
         }
+
+
         j++
     }
 
-    //displays book objects correctly now it just needs to be styled properly and remove button added.--------------------5/13/22
+
 }
 
 function popup() {
@@ -108,3 +117,6 @@ function closePopup() {
     }
     console.log('bye');
 }
+
+//Goal: figure out how to remove all children of 'main-table' table when 'Book List' button is pressed 
+//Goal-2: properly set rows and columns when book list is generated.
