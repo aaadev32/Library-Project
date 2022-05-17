@@ -33,6 +33,9 @@ function bookList() {
     let createButton = document.createElement('button');
     let createTableRow = document.createElement('tr');
     let newRowId = document.getElementById(`table-row-${j}`)
+    let firstChild = table.firstChild;
+
+    table.removeChild(firstChild); //successfully stops booklist from generating previous inputs on consecutive clicks. still doesnt remove elements from page.
 
 
     for (let i = 0; i < myLibrary.length; i++) {
@@ -44,7 +47,8 @@ function bookList() {
             //creates table head and appends keys to it
             let newTableRow = createTableRow;
             newTableRow.id = `table-row-${i}`;
-            table.appendChild(newTableRow);
+            let rowClone = newTableRow.cloneNode(); // this isnt actually generating new rows
+            table.appendChild(rowClone);
 
             for (const [key, value] of Object.entries(obj)) {
                 let newKeyNode = createTableHead;
@@ -70,7 +74,7 @@ function bookList() {
 
             if(key == 'read'){
                 let newButton = createButton;
-                newButton.dataset.index = `${i}` //TODO: make this line set data- attribute properly
+                newButton.dataset.index = `${i}`;
                 newButton.textContent = `Delete Book`;
                 buttonClone = newButton.cloneNode(true);
                 newTableRow.appendChild(buttonClone);
