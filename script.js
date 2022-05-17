@@ -8,6 +8,19 @@ const pages = document.getElementById('pages');
 const read = document.getElementById('read');
 const table = document.getElementById('main-table');
 
+function removeChildren(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild)
+    }
+}
+
+function deleteBook(dataAttributeIndex){
+    myLibrary.splice(dataAttributeIndex, 1);
+    //while(document.querySelectorAll(dataAttributeIndex)){
+
+    //}
+}
+
 function Book(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -33,10 +46,8 @@ function bookList() {
     let createButton = document.createElement('button');
     let createTableRow = document.createElement('tr');
     let newRowId = document.getElementById(`table-row-${j}`)
-    let firstChild = table.firstChild;
 
-    table.removeChild(firstChild); //successfully stops booklist from generating previous inputs on consecutive clicks. still doesnt remove elements from page.
-
+    removeChildren(table);
 
     for (let i = 0; i < myLibrary.length; i++) {
 
@@ -46,40 +57,45 @@ function bookList() {
         if (j == 0) {
             //creates table head and appends keys to it
             let newTableRow = createTableRow;
-            newTableRow.id = `table-row-${i}`;
-            let rowClone = newTableRow.cloneNode(); // this isnt actually generating new rows
+            newTableRow.dataset.index = `${i}`;
+            let rowClone = newTableRow.cloneNode();
             table.appendChild(rowClone);
 
             for (const [key, value] of Object.entries(obj)) {
-                let newKeyNode = createTableHead;
-                newKeyNode.textContent = key;
-                let keyClone = newKeyNode.cloneNode(true);
-                newTableRow.appendChild(keyClone);
+                let newKey = createTableHead;
+                newKey.textContent = key;
+                let keyClone = newKey.cloneNode(true);
+                rowClone.appendChild(keyClone);
             }
             j++
         }
 
-        //create new row for values and append them
+        //creates a new row for values
         let newTableRow = createTableRow;
-        newTableRow.id = `table-row-${i}`;
-        console.log(newTableRow);
-        table.appendChild(createTableRow);
+        newTableRow.dataset.index = `${i}`;
+        rowClone = newTableRow.cloneNode(true);
+        table.appendChild(rowClone);
 
+        //values added and appended
         for (const [key, value] of Object.entries(obj)) {
-            let newValueNode = createTableData;
-            newValueNode.dataset.index = `${i}`;
-            newValueNode.textContent = value;
-            let valueClone = newValueNode.cloneNode(true);
-            newTableRow.appendChild(valueClone);
-
-            if(key == 'read'){
+            let newValue = createTableData;
+            newValue.dataset.index = `${i}`;
+            newValue.textContent = value;
+            let valueClone = newValue.cloneNode(true);
+            rowClone.appendChild(valueClone);
+            
+            //checks for final key to add button to the end
+            if (key == 'read') {
                 let newButton = createButton;
                 newButton.dataset.index = `${i}`;
+                //let index = `${i}`;
+                newButton.onClick = deleteBook(newButton.dataset.index);// this deletes properly but somehow without even clicking the button!!!
                 newButton.textContent = `Delete Book`;
                 buttonClone = newButton.cloneNode(true);
-                newTableRow.appendChild(buttonClone);
+                rowClone.appendChild(buttonClone);
             }
         }
+        
 
 
         j++
@@ -122,5 +138,6 @@ function closePopup() {
     console.log('bye');
 }
 
-//Goal: figure out how to remove all children of 'main-table' table when 'Book List' button is pressed 
-//Goal-2: properly set rows and columns when book list is generated.
+//TODO: line 92 notes
+//TODO: Add a button on each book’s display to change its read status. 
+//TODO: do some simple styling and be finished!

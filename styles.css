@@ -53,3 +53,7 @@ th tr td {
 #popup-container {
     position: fixed;
 }
+
+#hidden-table {
+    display: none;
+}
