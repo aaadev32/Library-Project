@@ -43,6 +43,9 @@ form>input {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: black;
+    border-radius: 15px;
+    color: whitesmoke; 
 }
 
 th tr td {

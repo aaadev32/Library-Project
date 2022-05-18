@@ -88,9 +88,10 @@ function bookList() {
             if (key == 'read') {
                 let newButton = createButton;
                 newButton.dataset.index = `${i}`;
-                //let index = `${i}`;
-                newButton.onClick = deleteBook(newButton.dataset.index);// this deletes properly but somehow without even clicking the button!!!
+                let index = newButton.dataset.index;
+                newButton.onClick = `deleteBook(${index}, bookList())`;// this deletes properly but somehow without even clicking the button!!!
                 newButton.textContent = `Delete Book`;
+                console.log(newButton);
                 buttonClone = newButton.cloneNode(true);
                 rowClone.appendChild(buttonClone);
             }
