@@ -40,17 +40,9 @@ form>input {
 }
 
 #main-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin: 4px;
     background-color: black;
-    border-radius: 15px;
     color: whitesmoke; 
-}
-
-th tr td {
-    border: 1px solid black;
-    margin: 2px 5px;
 }
 
 #popup-container {

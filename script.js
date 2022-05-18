@@ -14,11 +14,8 @@ function removeChildren(parent) {
     }
 }
 
-function deleteBook(dataAttributeIndex){
-    myLibrary.splice(dataAttributeIndex, 1);
-    //while(document.querySelectorAll(dataAttributeIndex)){
-
-    //}
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
 }
 
 function Book(title, author, pages, read) {
@@ -54,7 +51,7 @@ function bookList() {
         j = 0;
         let obj = myLibrary[i];
 
-        if (j == 0) {
+        if (i == 0) {
             //creates table head and appends keys to it
             let newTableRow = createTableRow;
             newTableRow.dataset.index = `${i}`;
@@ -83,20 +80,20 @@ function bookList() {
             newValue.textContent = value;
             let valueClone = newValue.cloneNode(true);
             rowClone.appendChild(valueClone);
-            
+
             //checks for final key to add button to the end
             if (key == 'read') {
                 let newButton = createButton;
                 newButton.dataset.index = `${i}`;
-                let index = newButton.dataset.index;
-                newButton.onClick = `deleteBook(${index}, bookList())`;// this deletes properly but somehow without even clicking the button!!!
+                newButton.type = 'button';
+                newButton.onclick = function () {deleteBook(i), bookList()};// fix this mf right here
                 newButton.textContent = `Delete Book`;
                 console.log(newButton);
                 buttonClone = newButton.cloneNode(true);
                 rowClone.appendChild(buttonClone);
             }
         }
-        
+
 
 
         j++
@@ -139,6 +136,5 @@ function closePopup() {
     console.log('bye');
 }
 
-//TODO: line 92 notes
 //TODO: Add a button on each book’s display to change its read status. 
 //TODO: do some simple styling and be finished!
