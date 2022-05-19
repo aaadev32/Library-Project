@@ -85,12 +85,12 @@ function bookList() {
             if (key == 'read') {
                 let newButton = createButton;
                 newButton.dataset.index = `${i}`;
-                newButton.type = 'button';
-                newButton.onclick = function () {deleteBook(i), bookList()};// fix this mf right here
                 newButton.textContent = `Delete Book`;
                 console.log(newButton);
                 buttonClone = newButton.cloneNode(true);
+                buttonClone.onclick = function () {deleteBook(i), bookList()}; //try using dataset.index and parseToInt() as deleteBook() parameter
                 rowClone.appendChild(buttonClone);
+
             }
         }
 
