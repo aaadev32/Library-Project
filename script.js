@@ -14,6 +14,29 @@ function removeChildren(parent) {
     }
 }
 
+function readNotRead(row) {
+    if (document.getElementById(`td-read-${row}`).textContent == 'no') {
+        document.getElementById(`td-read-${row}`).textContent = 'yes';
+    } else {
+        document.getElementById(`td-read-${row}`).textContent = 'no';
+    }
+    /*for (const [key, value] of Object.entries(library)) {
+        if (key == read && value == 'no') {
+            library.read = 'yes';
+        } else if (key == read && value == 'yes') {
+            library.read = 'no';
+        } else if (key == read && value == undefined){
+            library.read = 'yes';
+        }
+    } */
+
+    /*if (document.getElementById(`td-read-${row}`).textContent == 'no') {
+        Object.setPrototypeOf(read, 'yes');
+    } else {
+        Object.setPrototypeOf(read, 'no');
+    } */
+}
+
 function deleteBook(index) {
     myLibrary.splice(index, 1);
 }
@@ -23,7 +46,6 @@ function Book(title, author, pages, read) {
     this.author = author
     this.pages = pages
     this.read = read
-    console.log(Book);
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -54,7 +76,6 @@ function bookList() {
         if (i == 0) {
             //creates table head and appends keys to it
             let newTableRow = createTableRow;
-            newTableRow.dataset.index = `${i}`;
             let rowClone = newTableRow.cloneNode();
             table.appendChild(rowClone);
 
@@ -83,20 +104,28 @@ function bookList() {
 
             //checks for final key to add button to the end
             if (key == 'read') {
+                valueClone.textContent = 'no';
+                valueClone.id = `td-read-${i}`;
+
                 let newButton = createButton;
                 newButton.dataset.index = `${i}`;
                 newButton.textContent = `Delete Book`;
-                console.log(newButton);
                 buttonClone = newButton.cloneNode(true);
-                buttonClone.onclick = function () {deleteBook(i), bookList()}; //try using dataset.index and parseToInt() as deleteBook() parameter
+                buttonClone.onclick = function () { deleteBook(i), bookList() };
                 rowClone.appendChild(buttonClone);
 
+                let readButton = createButton;
+                readButton.textContent = 'Read?';
+                readButtonClone = readButton.cloneNode(true);
+                readButtonClone.onclick = function () { readNotRead(i) }
+                rowClone.appendChild(readButtonClone)
             }
         }
 
 
 
         j++
+
     }
 
 
@@ -110,7 +139,7 @@ function popup() {
 
     if (close == null) {
         closePopup();
-        addBookToLibrary(title.value, author.value, pages.value, read.value);
+        addBookToLibrary(title.value, author.value, pages.value);
         return 1;
     }
 
@@ -133,7 +162,6 @@ function closePopup() {
     for (i = 0; i < length; i++) {
         bookForm[i].style.display = 'none';
     }
-    console.log('bye');
 }
 
 //TODO: Add a button on each book’s display to change its read status. 
