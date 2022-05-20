@@ -1,7 +1,7 @@
-/*let testBook = {
+let testBook = {
     title: 'test', author: 'test', pages: 123, read: 'No'
-};*/
-let myLibrary = [];
+};
+let myLibrary = [testBook];
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
@@ -22,7 +22,7 @@ function readNotRead(libIndex) {
         libIndex.read = 'yes';
     } else {
         libIndex.read = 'yes';
-    } 
+    }
 
 }
 
@@ -53,35 +53,43 @@ function bookList() {
     let createTableData = document.createElement('td');
     let createButton = document.createElement('button');
     let createTableRow = document.createElement('tr');
-    let newRowId = document.getElementById(`table-row-${j}`)
+    let newRowId = document.getElementById(`table-row-${j}`);
+    let createCard = document.createElement('div');
+
 
     removeChildren(table);
 
     for (let i = 0; i < myLibrary.length; i++) {
 
-        j = 0;
         let obj = myLibrary[i];
 
-        if (i == 0) {
-            //creates table head and appends keys to it
-            let newTableRow = createTableRow;
-            let rowClone = newTableRow.cloneNode();
-            table.appendChild(rowClone);
 
-            for (const [key, value] of Object.entries(obj)) {
-                let newKey = createTableHead;
-                newKey.textContent = key;
-                let keyClone = newKey.cloneNode(true);
-                rowClone.appendChild(keyClone);
-            }
-            j++
+        //creates table head and appends keys to it
+        let newTableRow = createTableRow;
+        newTableRow.className = 'book-card';
+        newCard = createCard;
+        newCard.className = 'cards';
+        let cardClone = newCard.cloneNode(true);
+        table.appendChild(cardClone);
+        let rowClone = newTableRow.cloneNode();
+        cardClone.appendChild(rowClone);
+
+        for (const [key, value] of Object.entries(obj)) {
+            let newKey = createTableHead;
+            newKey.textContent = key;
+            let keyClone = newKey.cloneNode(true);
+            rowClone.appendChild(keyClone);
         }
 
         //creates a new row for values
-        let newTableRow = createTableRow;
+        newTableRow = createTableRow;
         newTableRow.className = `book-card`;
         rowClone = newTableRow.cloneNode(true);
-        table.appendChild(rowClone);
+        newCard = createCard;
+        newCard.className = 'cards';
+        cardClone = newCard.cloneNode(true);
+        table.appendChild(cardClone);
+        cardClone.appendChild(rowClone);
 
         //values added and appended
         for (const [key, value] of Object.entries(obj)) {
@@ -109,10 +117,6 @@ function bookList() {
                 rowClone.appendChild(readButtonClone)
             }
         }
-
-
-
-        j++
 
     }
 
@@ -151,3 +155,5 @@ function closePopup() {
         bookForm[i].style.display = 'none';
     }
 }
+
+//create divs for each card to go into so you can organize them via flex

@@ -1,6 +1,4 @@
-* {
-    background-color: grey;
-}
+
 form {
     display: flex;
     justify-content: center;
@@ -39,9 +37,17 @@ form>input {
     display: none;
 }
 
+
 #main-table {
-    background-color: black;
+
 }
+
+.book-card{
+    border: 1px solid red;
+    background-color: grey;
+    color: black;
+}
+
 
 #popup-container {
     position: fixed;
