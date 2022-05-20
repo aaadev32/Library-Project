@@ -14,27 +14,16 @@ function removeChildren(parent) {
     }
 }
 
-function readNotRead(row) {
-    if (document.getElementById(`td-read-${row}`).textContent == 'no') {
-        document.getElementById(`td-read-${row}`).textContent = 'yes';
-    } else {
-        document.getElementById(`td-read-${row}`).textContent = 'no';
-    }
-    /*for (const [key, value] of Object.entries(library)) {
-        if (key == read && value == 'no') {
-            library.read = 'yes';
-        } else if (key == read && value == 'yes') {
-            library.read = 'no';
-        } else if (key == read && value == undefined){
-            library.read = 'yes';
-        }
-    } */
+function readNotRead(libIndex) {
 
-    /*if (document.getElementById(`td-read-${row}`).textContent == 'no') {
-        Object.setPrototypeOf(read, 'yes');
+    if (libIndex.read == 'yes') {
+        libIndex.read = 'no';
+    } else if (libIndex.read == null || libIndex.read == undefined) {
+        libIndex.read = 'yes';
     } else {
-        Object.setPrototypeOf(read, 'no');
-    } */
+        libIndex.read = 'yes';
+    } 
+
 }
 
 function deleteBook(index) {
@@ -104,7 +93,6 @@ function bookList() {
 
             //checks for final key to add button to the end
             if (key == 'read') {
-                valueClone.textContent = 'no';
                 valueClone.id = `td-read-${i}`;
 
                 let newButton = createButton;
@@ -117,7 +105,7 @@ function bookList() {
                 let readButton = createButton;
                 readButton.textContent = 'Read?';
                 readButtonClone = readButton.cloneNode(true);
-                readButtonClone.onclick = function () { readNotRead(i) }
+                readButtonClone.onclick = function () { readNotRead(myLibrary[i]), bookList() }
                 rowClone.appendChild(readButtonClone)
             }
         }
