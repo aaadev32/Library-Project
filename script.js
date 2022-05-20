@@ -79,7 +79,7 @@ function bookList() {
 
         //creates a new row for values
         let newTableRow = createTableRow;
-        newTableRow.dataset.index = `${i}`;
+        newTableRow.className = `book-card`;
         rowClone = newTableRow.cloneNode(true);
         table.appendChild(rowClone);
 
@@ -151,6 +151,3 @@ function closePopup() {
         bookForm[i].style.display = 'none';
     }
 }
-
-//TODO: Add a button on each book’s display to change its read status. 
-//TODO: do some simple styling and be finished!
