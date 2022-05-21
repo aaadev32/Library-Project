@@ -73,6 +73,12 @@ button:hover{
     margin: 10px;
 }
 
+#add-list-buttons > button{
+    width: 125px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
 
 #main-table {
     display: grid;
