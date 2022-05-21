@@ -1,6 +1,7 @@
 let testBook = {
-    title: 'test', author: 'test', pages: 123, read: 'No'
+    title: 'The Hobbit', author: 'J.R.R. Tolkien', pages: 310, read: 'yes'
 };
+
 let myLibrary = [testBook];
 const title = document.getElementById('title');
 const author = document.getElementById('author');
@@ -66,9 +67,9 @@ function bookList() {
 
         //creates table head and appends keys to it
         let newTableRow = createTableRow;
-        newTableRow.className = 'book-card';
-        newCard = createCard;
-        newCard.className = 'cards';
+        newTableRow.className = 'book-card-head';
+        let newCard = createCard;
+        newCard.className = 'card';
         let cardClone = newCard.cloneNode(true);
         table.appendChild(cardClone);
         let rowClone = newTableRow.cloneNode();
@@ -83,12 +84,8 @@ function bookList() {
 
         //creates a new row for values
         newTableRow = createTableRow;
-        newTableRow.className = `book-card`;
+        newTableRow.className = `book-card-values`;
         rowClone = newTableRow.cloneNode(true);
-        newCard = createCard;
-        newCard.className = 'cards';
-        cardClone = newCard.cloneNode(true);
-        table.appendChild(cardClone);
         cardClone.appendChild(rowClone);
 
         //values added and appended
@@ -103,12 +100,19 @@ function bookList() {
             if (key == 'read') {
                 valueClone.id = `td-read-${i}`;
 
+                //create new row for buttons
+                newTableRow = createTableRow;
+                newTableRow.className = 'card-button';
+                rowClone = newTableRow.cloneNode(true);
+                cardClone.appendChild(rowClone);
+
                 let newButton = createButton;
                 newButton.dataset.index = `${i}`;
                 newButton.textContent = `Delete Book`;
                 buttonClone = newButton.cloneNode(true);
                 buttonClone.onclick = function () { deleteBook(i), bookList() };
                 rowClone.appendChild(buttonClone);
+
 
                 let readButton = createButton;
                 readButton.textContent = 'Read?';
@@ -156,4 +160,5 @@ function closePopup() {
     }
 }
 
-//create divs for each card to go into so you can organize them via flex
+//shows testbook on page start
+bookList();

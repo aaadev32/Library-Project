@@ -1,22 +1,54 @@
-
-form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto;
+html {
+    background-color: darkgray;
+    height: 100%;       
+    margin: 0;
+    padding: 0; 
+    overflow: scroll;
+}
+body{
+    background-image: url(images/GettyImages-577674005_492115_zfpgiw\.jpg);
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0; 
+    position: fixed;
+    overflow: scroll;
 }
 
-form>input {
-    width: 200px;
-
+#heading{
+    text-align: center;
 }
 
-form>label {
-    margin-left: 25px;
+h1{
+    margin: 0 5px;
+    color: white;
 }
 
-form>input {
-    margin: 0 auto;
+button{
+    background-color: rgba(128, 128, 128, .6);
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 5px;
+    border:2px rgba(rgba(248, 248, 248m), green, blue, alpha)
+}
+
+#background{
+    position: relative;
+    z-index: 0;
+}
+
+#opaque-background {
+    background-color: rgba(128, 128, 128, .6);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: scroll;
 }
 
 #open-popup {
@@ -25,7 +57,7 @@ form>input {
     margin: auto;
     height: 210px;
     width: 250px;
-    background-color: rgba(87, 87, 87, .6);
+    background-color: rgba(128, 128, 128);
     border-radius: 15px;
 }
 
@@ -37,17 +69,55 @@ form>input {
     display: none;
 }
 
+#add-list-buttons{
+    margin: 10px;
+}
+
 
 #main-table {
-
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 2ch;
+    row-gap: 2ch;
+    overflow: scroll;
 }
 
-.book-card{
-    border: 1px solid red;
-    background-color: grey;
+th,
+td {
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.card {
+    margin: 0 5px;
+    padding: 2px;
+    background-color: rgba(0, 0, 0,.2);
+    border-radius: 5px;
+    color: white;
+}
+
+.card-button {
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+}
+
+.card-button>button {
     color: black;
+    color: white;
 }
 
+.card-button>button {
+    width: 120px;
+}
+
+.book-card-values>td {
+    width: 175px;
+    height: 25px;
+    overflow: scroll;
+    text-align: center;
+}
 
 #popup-container {
     position: fixed;

@@ -11,31 +11,38 @@
 </head>
 
 <body>
-    <h1>My Library Project</h1>
-    <button id="add-book" onclick="popup()">Add Book</button>
-    <button id="list-books" onclick="bookList()">Book List</button>
-
-    <div class="popup-container">
-        <div id="close-popup">
-            <form action="">
-                <label for="title" class="input-label">Title</label>
-                <input type="text" class="input-label" id="title">
-
-                <label for="author" class="input-label">Author</label>
-                <input type="text" class="input-label" id="author">
-
-                <label for="pages" class="input-label">Pages</label>
-                <input type="text" class="input-label" id="pages">
-
-            </form>
+    <div id="opaque-background">
+        <div id="heading">
+            <h1>Simple Library Project</h1>
         </div>
-    </div>
 
-    <div id="table-container">
+        <div id="add-list-buttons">
+            <button id="add-book" onclick="popup()">Add Book</button>
+            <button id="list-books" onclick="bookList()">Book List</button>
+        </div>
 
-        <table id="main-table">
+        <div class="popup-container">
+            <div id="close-popup">
+                <form action="">
+                    <label for="title" class="input-label">Title</label>
+                    <input type="text" class="input-label" id="title">
 
-        </table>
+                    <label for="author" class="input-label">Author</label>
+                    <input type="text" class="input-label" id="author">
 
+                    <label for="pages" class="input-label">Pages</label>
+                    <input type="text" class="input-label" id="pages">
+
+                </form>
+            </div>
+        </div>
+
+        <div id="table-container">
+
+            <table id="main-table">
+
+            </table>
+
+        </div>
     </div>
 </body>
