@@ -15,8 +15,33 @@ function removeChildren(parent) {
     }
 }
 
-function readNotRead(libIndex) {
 
+
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
+}
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
+
+    addBookToLibrary(book) {
+        let newBook = book;
+
+        myLibrary.push(newBook);
+        console.log(newBook);
+        console.log(myLibrary);
+        i++;
+    }
+}
+
+
+
+function readNotRead(libIndex) {
     if (libIndex.read == 'yes') {
         libIndex.read = 'no';
     } else if (libIndex.read == null || libIndex.read == undefined) {
@@ -24,29 +49,8 @@ function readNotRead(libIndex) {
     } else {
         libIndex.read = 'yes';
     }
-
 }
 
-function deleteBook(index) {
-    myLibrary.splice(index, 1);
-}
-
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-}
-
-function addBookToLibrary(title, author, pages, read) {
-    let newBook = {};
-    newBook = new Book(title, author, pages, read);
-
-    myLibrary.push(newBook);
-    console.log(newBook);
-    console.log(myLibrary);
-    i++;
-}
 
 function bookList() {
     let j = 0;
@@ -135,7 +139,8 @@ function popup() {
 
     if (close == null) {
         closePopup();
-        addBookToLibrary(title.value, author.value, pages.value);
+        let newBook = new Book(title.value, author.value, pages.value);
+        newBook.addBookToLibrary(newBook);
         return 1;
     }
 
